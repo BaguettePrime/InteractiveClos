@@ -68,19 +68,30 @@ p, li, label, .stMarkdown {
 }
 
 /* === Boutons === */
-.stButton > button {
-    background-color: var(--accent-wine) !important;
+.stButton > button,
+.stButton > button:focus,
+.stButton > button:visited,
+div[data-testid="stButton"] > button {
+    background-color: var(--border-gold) !important;
     color: #fff !important;
-    border: none !important;
+    border: 2px solid #9a8850 !important;
     border-radius: 8px !important;
     font-family: var(--font-body) !important;
     font-weight: 700 !important;
+    font-size: 1rem !important;
     padding: 0.5rem 1.5rem !important;
     transition: all 0.3s ease !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    letter-spacing: 0.02em !important;
 }
-.stButton > button:hover {
-    background-color: #8b1a25 !important;
-    box-shadow: 0 4px 12px rgba(99, 13, 22, 0.3) !important;
+.stButton > button p,
+div[data-testid="stButton"] > button p {
+    color: #fff !important;
+}
+.stButton > button:hover,
+div[data-testid="stButton"] > button:hover {
+    background-color: #9a8850 !important;
+    box-shadow: 0 4px 12px rgba(175, 155, 96, 0.4) !important;
     transform: translateY(-1px) !important;
 }
 .stButton > button:active {

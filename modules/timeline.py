@@ -64,6 +64,10 @@ def _afficher_graphique_production(
 ):
     """Affiche un graphique Plotly contextuel pour une étape de la timeline."""
     if "gel" in etape["titre"].lower() or "bio" in etape["titre"].lower() or index >= 6:
+        # Éviter les graphiques dupliqués : un seul par timeline
+        if f"_timeline_chart_shown_{index}" not in st.session_state:
+            st.session_state[f"_timeline_chart_shown_{index}"] = True
+
         # Montrer l'impact du gel ou l'évolution récente
         df_annuel = (
             df.groupby("annee")["volume_hl"]
@@ -89,7 +93,7 @@ def _afficher_graphique_production(
             coloraxis_showscale=False,
         )
         fig.update_xaxes(dtick=1)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, key=f"timeline_chart_{index}")
 
 
 def _afficher_graphique_global(df: pd.DataFrame):
@@ -123,4 +127,4 @@ def _afficher_graphique_global(df: pd.DataFrame):
         font=dict(family="Lato, sans-serif", color="#2c2c2c"),
     )
     fig.update_xaxes(dtick=1)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="timeline_chart_global")
